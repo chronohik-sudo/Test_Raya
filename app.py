@@ -1,16 +1,20 @@
 from flask import Flask, render_template, request, redirect
 from openpyxl import Workbook, load_workbook
 import os
-
-app = Flask(__name__)
+from openpyxl import Workbook, load_workbook
 
 FILE_NAME = "responses.xlsx"
 
-# Create Excel file if not exist
-if not os.path.exists(FILE_NAME):
-    wb = Workbook()
-    ws = wb.active
-    ws.append(["First Name", "Last Name", "Email", "Company", "Attendance"])
+def save_to_excel(data):
+    if not os.path.exists(FILE_NAME):
+        wb = Workbook()
+        ws = wb.active
+        ws.append(["First Name", "Last Name", "Email", "Company", "Attendance"])
+    else:
+        wb = load_workbook(FILE_NAME)
+        ws = wb.active
+
+    ws.append(data)
     wb.save(FILE_NAME)
 
 @app.route('/')
@@ -25,10 +29,8 @@ def submit():
     company = request.form['company']
     attendance = request.form['attendance']
 
-    wb = load_workbook(FILE_NAME)
-    ws = wb.active
-    ws.append([fname, lname, email, company, attendance])
-    wb.save(FILE_NAME)
+        # ✅ THIS IS WHERE YOU PUT IT
+    save_to_excel([fname, lname, email, company, attendance])
 
     return redirect('/')
 
