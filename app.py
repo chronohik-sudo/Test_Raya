@@ -3,6 +3,8 @@ from openpyxl import Workbook, load_workbook
 import os
 from openpyxl import Workbook, load_workbook
 
+app = Flask(__name__)
+
 FILE_NAME = "responses.xlsx"
 
 def save_to_excel(data):
