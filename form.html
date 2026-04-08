@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raya RSVP</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Raya Open House RSVP</h2>
+
+    <form action="/submit" method="POST">
+
+        <label>
+            <input type="radio" name="attendance" value="Going" required> I'm Going
+        </label>
+        <label>
+            <input type="radio" name="attendance" value="Not Going"> Not Going
+        </label>
+
+        <input type="text" name="fname" placeholder="First Name" required>
+        <input type="text" name="lname" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="company" placeholder="Company" required>
+
+        <button type="submit">Confirm Attendance</button>
+
+    </form>
+</div>
+
+</body>
+</html>
